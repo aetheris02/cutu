@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday  🎂</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background: radial-gradient(circle at top,#1a1a2e,#0f0f1a,#000);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    overflow-x:hidden;
+    color:white;
+}
+
+/* Animated stars */
+body::before{
+    content:"";
+    position:fixed;
+    width:200%;
+    height:200%;
+    background:url("https://www.transparenttextures.com/patterns/stardust.png");
+    animation:moveStars 80s linear infinite;
+    opacity:0.4;
+}
+
+@keyframes moveStars{
+    from{transform:translateY(0);}
+    to{transform:translateY(-1000px);}
+}
+
+/* Card */
+.card{
+    position:relative;
+    width:100%;
+    max-width:420px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(12px);
+    border-radius:25px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 0 40px rgba(162,89,255,0.3);
+    z-index:2;
+    animation:fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+h1{
+    font-family:'Great Vibes',cursive;
+    font-size:40px;
+    color:#d6a4ff;
+    text-shadow:0 0 20px #a259ff;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    font-size:14px;
+    margin-bottom:20px;
+    opacity:0.8;
+}
+
+.photo{
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #a259ff;
+    margin-bottom:20px;
+    box-shadow:0 0 30px #a259ff;
+}
+
+/* Buttons */
+button{
+    width:100%;
+    padding:14px;
+    border-radius:40px;
+    border:none;
+    margin:8px 0;
+    font-weight:600;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.note-btn{
+    background:#a259ff;
+    color:white;
+}
+
+.surprise-btn{
+    background:transparent;
+    border:2px solid #a259ff;
+    color:#d6a4ff;
+}
+
+button:active{
+    transform:scale(0.95);
+}
+
+/* Popup */
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    opacity:0;
+    pointer-events:none;
+    transition:0.3s;
+    z-index:5;
+}
+
+.popup.active{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.popup-content{
+    background:#1f1f2e;
+    padding:25px;
+    border-radius:20px;
+    max-width:350px;
+    text-align:center;
+    animation:pop 0.4s ease;
+    box-shadow:0 0 30px #a259ff;
+}
+
+@keyframes pop{
+    from{transform:scale(0.8);}
+    to{transform:scale(1);}
+}
+
+.close{
+    margin-top:15px;
+    color:#d6a4ff;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* Flowers */
+.flower{
+    position:fixed;
+    top:-20px;
+    font-size:24px;
+    animation:fall linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* Mobile tweaks */
+@media(max-width:400px){
+    h1{font-size:30px;}
+    .photo{width:130px;height:130px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Happy Birthday Sanjana 💗</h1>
+    <div class="subtitle">May all of your wishes gets completed🤍</div>
+
+    <!-- Replace with her photo -->
+    <img src="sanjana.jpeg" class="photo">
+
+    <button class="note-btn" onclick="openPopup()">Read My Note 💌</button>
+    <button class="surprise-btn" onclick="createFlowers()">Click Here For A Surprise 🌹</button>
+</div>
+
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <h2 style="margin-bottom:10px;color:#d6a4ff;">My Love,</h2>
+        <p>
+        Happy Birthday to my Beautiful girl❤️.
+       you are the most beautiful and kindest person ever.
+        Everything about you is perfect your smile, your eyes everything. Even after everything you were still kind to me. This is the apology you deserve but you never got it.
+        I am sorry. I am proud of you and i always will be. ill be there for you still. 
+        may you always stay happy and keep glowing. i have lot to say but, even if someone wrote books about you it still won't be enough.
+        Once again HAPPPPYYY BIRTHDAYYYY CUTU. ENJOY YOURRR DAYY!
+        </p>
+        <div class="close" onclick="closePopup()">Close</div>
+    </div>
+</div>
+
+<script>
+function openPopup(){
+    document.getElementById("popup").classList.add("active");
+}
+
+function closePopup(){
+    document.getElementById("popup").classList.remove("active");
+}
+
+function createFlowers(){
+    for(let i=0;i<30;i++){
+        let flower=document.createElement("div");
+        flower.classList.add("flower");
+        flower.innerHTML="🌹";
+        flower.style.left=Math.random()*100+"vw";
+        flower.style.animationDuration=(3+Math.random()*3)+"s";
+        document.body.appendChild(flower);
+
+        setTimeout(()=>{flower.remove();},6000);
+    }
+}
+</script>
+
+</body>
+</html>
